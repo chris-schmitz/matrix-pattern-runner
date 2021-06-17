@@ -22,17 +22,15 @@ void CSMatrix::runRandom()
   for (int i = 0; i < _totalLeds; i++)
   {
     _matrix[i] = getRandomColor();
-    delay(100);
+    delay(50);
     FastLED.show();
   }
-  delay(1000);
   for (int i = 0; i < _totalLeds; i++)
   {
     _matrix[i] = CRGB::Black;
-    delay(100);
+    delay(50);
     FastLED.show();
   }
-  delay(1000);
 }
 
 void CSMatrix::runPattern(PATTERNS pattern)
@@ -52,26 +50,30 @@ void CSMatrix::runPattern(PATTERNS pattern, uint8_t count, CRGB onColor, CRGB of
 
   runPattern(pattern, count);
 }
-void CSMatrix::runPattern(PATTERNS pattern, uint8_t count)
+void CSMatrix::runPattern(PATTERNS pattern, uint8_t totalRuns)
 {
-  for (uint8_t i = 0; i < count; i++)
+  for (uint8_t i = 0; i < totalRuns; i++)
   {
     switch (pattern)
     {
     case PATTERN_ZIG_ZAG:
-      runPatternSpacedStripes();
+      runTwoColorPattern(SPACED_STRIPES, SPACED_STRIPES_LEN, 100);
+      // runPatternSpacedStripes();
       break;
     case PATTERN_ARROW_UP:
-      runPatternArrowUp();
+      runTwoColorPattern(ARROW_UP, ARROW_UP_LEN, 100);
       break;
     case PATTERN_PILLARS:
-      runPatternPillars();
+      runTwoColorPattern(PILLARS, PILLARS_LEN, 100);
       break;
     case PATTERN_FAT_STRIPES:
-      runPatternFatStripes();
+      runTwoColorPattern(FAT_STRIPES, FAT_STRIPES_LEN, 100);
       break;
     case PATTERN_SPINNER:
-      runPatternSpinner();
+      runTwoColorPattern(SPINNER, SPINNER_LEN, 100);
+      break;
+    case PATTERN_PEAK_AND_VALLEY:
+      runTwoColorPattern(PEAK_AND_VALLEY, PEAK_AND_VALLEY_LEN, 100);
       break;
     }
   }
@@ -113,52 +115,13 @@ void CSMatrix::renderRow(uint8_t row, byte rowState)
   }
 }
 
-void CSMatrix::runPatternSpacedStripes()
+void CSMatrix::runTwoColorPattern(const byte *frames, const int length, int delayDuration)
 {
-  for (uint8_t i = 0; i < SPACED_STRIPES_LEN; i++)
+  for (uint8_t i = 0; i < length; i++)
   {
-    renderFrame(SPACED_STRIPES[i]);
+    Serial.println(i);
+    renderFrame(&frames[i * 8]);
     FastLED.show();
-    delay(100);
-  }
-}
-
-void CSMatrix::runPatternArrowUp()
-{
-  for (uint8_t i = 0; i < ARROW_UP_LEN; i++)
-  {
-    renderFrame(ARROW_UP[i]);
-    FastLED.show();
-    delay(100);
-  }
-}
-
-void CSMatrix::runPatternPillars()
-{
-  for (uint8_t i = 0; i < PILLARS_LEN; i++)
-  {
-    renderFrame(PILLARS[i]);
-    FastLED.show();
-    delay(100);
-  }
-}
-
-void CSMatrix::runPatternFatStripes()
-{
-  for (uint8_t i = 0; i < FAT_STRIPES_LEN; i++)
-  {
-    renderFrame(FAT_STRIPES[i]);
-    FastLED.show();
-    delay(100);
-  }
-}
-
-void CSMatrix::runPatternSpinner()
-{
-  for (uint8_t i = 0; i < SPINNER_LEN; i++)
-  {
-    renderFrame(SPINNER[i]);
-    FastLED.show();
-    delay(300);
+    delay(delayDuration);
   }
 }

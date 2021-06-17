@@ -17,14 +17,16 @@ void setup()
 void loop()
 {
   // matrix.runRandom();
-  matrix.runPattern(PATTERN_ZIG_ZAG, 5, CRGB::MintCream, CRGB::Teal);
+  matrix.runPattern(PATTERN_PEAK_AND_VALLEY, 5, CRGB::Silver, CRGB::Teal);
   delay(300);
-  matrix.runPattern(PATTERN_ARROW_UP, 5, CRGB::Black, CRGB::DarkViolet);
+  matrix.runPattern(PATTERN_ZIG_ZAG, 7, CRGB::Navy, CRGB::WhiteSmoke);
   delay(300);
-  matrix.runPattern(PATTERN_PILLARS, 5, CRGB::DarkOrange, CRGB::DarkRed);
+  matrix.runPattern(PATTERN_ARROW_UP, 2, CRGB::Black, CRGB::DarkViolet);
+  delay(300);
+  matrix.runPattern(PATTERN_PILLARS, 5, CRGB::DarkRed, CRGB::Black);
   delay(300);
   matrix.runPattern(PATTERN_FAT_STRIPES, 5, CRGB::DarkViolet, CRGB::FairyLight);
   delay(300);
-  matrix.runPattern(PATTERN_SPINNER, 5, CRGB::Olive, CRGB::MidnightBlue);
+  matrix.runPattern(PATTERN_SPINNER, 3, CRGB::Olive, CRGB::MidnightBlue);
   delay(300);
 }
