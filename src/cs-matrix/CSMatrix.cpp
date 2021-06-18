@@ -75,6 +75,15 @@ void CSMatrix::runPattern(PATTERNS pattern, uint8_t totalRuns)
     case PATTERN_PEAK_AND_VALLEY:
       runTwoColorPattern(PEAK_AND_VALLEY, PEAK_AND_VALLEY_LEN, 100);
       break;
+    case PATTERN_SHOOTING_STARS:
+      runTwoColorPattern(SHOOTING_STARS, SHOOTING_STARS_LEN, 100);
+      break;
+    case PATTERN_RINGS:
+      runTwoColorPattern(RINGS, RINGS_LEN, 100);
+      break;
+    case PATTERN_RETICLE:
+      runTwoColorPattern(RETICLE, RETICLE_LEN, 100);
+      break;
     }
   }
 }

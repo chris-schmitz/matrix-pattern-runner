@@ -12,7 +12,10 @@ enum PATTERNS
   PATTERN_PILLARS,
   PATTERN_FAT_STRIPES,
   PATTERN_SPINNER,
-  PATTERN_PEAK_AND_VALLEY
+  PATTERN_PEAK_AND_VALLEY,
+  PATTERN_SHOOTING_STARS,
+  PATTERN_RINGS,
+  PATTERN_RETICLE
 };
 
 class CSMatrix
@@ -46,13 +49,6 @@ private:
   void renderFrame(const byte *frame);
   void renderRow(uint8_t row, byte rowState);
 
-  // * Patterns
-  void runPatternSpacedStripes();
-  void runPatternArrowUp();
-  void runPatternPillars();
-  void runPatternFatStripes();
-  void runPatternSpinner();
-  void runPatternPeakAndValley();
   void runTwoColorPattern(const byte *frames, const int length, int delayDuration);
 };
 
